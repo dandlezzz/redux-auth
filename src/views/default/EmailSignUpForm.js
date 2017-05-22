@@ -75,7 +75,7 @@ class EmailSignUpForm extends React.Component {
                onChange={this.handleInput.bind(this, "password")}
                {...this.props.inputProps.password} />
 
-        <Input type="password"
+             <Input type="password"
                label="Password Confirmation"
                className="email-sign-up-password-confirmation"
                disabled={disabled}
@@ -83,6 +83,14 @@ class EmailSignUpForm extends React.Component {
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "password_confirmation"])}
                onChange={this.handleInput.bind(this, "password_confirmation")}
                {...this.props.inputProps.passwordConfirmation} />
+        <Input type="text"
+              label="Business Name"
+              className="email-sign-up-business-name"
+              disabled={disabled}
+              value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "businessName"])}
+              errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "businessName"])}
+              onChange={this.handleInput.bind(this, "business_name")}
+              {...this.props.inputProps.businessName} />
 
         <ButtonLoader loading={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "loading"])}
                       type="submit"
