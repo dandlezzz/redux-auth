@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from 'prop-types';
 import ActionLock from "material-ui/svg-icons/action/lock";
 import Dialog from "material-ui/Dialog";
 import FlatButton from "material-ui/FlatButton";
@@ -56,23 +57,26 @@ class PasswordResetSuccessModal extends React.Component {
           contentClassName="redux-auth-modal password-reset-success-modal"
           actions={[
             <FlatButton
+              key="submit"
+              {...this.props}
+              type="submit"
+              primary={true}
+              className="password-reset-success-modal-submit button-primary"
+              onClick={this.handleSubmit.bind(this)}
+              {...this.props.inputProps.submit}
+            >
+              Submit
+            </FlatButton>,
+            <br/>,
+            <br/>,
+            <FlatButton
               key="cancel"
-              className="password-reset-success-modal-close"
+              className="password-reset-success-modal-close button-secondary"
               onClick={this.close.bind(this)}
               secondary={true}
               {...this.props.inputProps.cancel}>
               Cancel
-            </FlatButton>,
-            <ButtonLoader
-              key="submit"
-              {...this.props}
-              loading={loading}
-              type="submit"
-              primary={true}
-              className="password-reset-success-modal-submit"
-              icon={ActionLock}
-              onClick={this.handleSubmit.bind(this)}
-              {...this.props.inputProps.submit} />
+            </FlatButton>
           ]}
           title="Reset Your Password">
           <form>
